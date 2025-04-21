@@ -3,17 +3,33 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "tsx src/index.ts",
+    "build": ""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "alpinejs": "^3.14.9",
+    "animejs": "^4.0.1",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "htmx.org": "^1.9.12",
-    "mongoose": "^8.13.2",
     "nodemon": "^3.1.9",
-    "pug": "^3.0.3"
+    "pug": "^3.0.3",
+    "yukata": "file:"
+  },
+  "devDependencies": {
+    "@types/animejs": "^3.1.13",
+    "@types/express": "^5.0.1",
+    "@types/mongoose": "^5.11.97",
+    "@types/pug": "^2.0.10",
+    "@types/typescript": "^2.0.0",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
   }
 }

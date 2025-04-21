@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/alpinejs/cdn.min.js" defer></script>
+    <script src="/htmx/dist/htmx.min.js" defer></script>
+    
+    <link rel="stylesheet" href="input.css" type="text/css">
+
+</head>
+<body x-data="{ currentSection: null, media: ['games', 'music', 'art', 'writing'], clickedStart: false }">
+
+    <div id="start-screen" x-show="!clickedStart">
+    
+        <div>
+
+            <h2>
+                BlueAttire
+            </h2>    
+
+            <span>Welcome</span>
+
+            <button @click="clickedStart = true">Start</button>
+
+        </div>
+    </div>
+
+    <header x-show="clickedStart">
+
+
+        <div class="text-ribbon">
+            <span>What Would You Like To View?</span>
+        </div>
+
+
+        <nav class="nav-icon-group">
+
+            <template x-for="medium in media">
+                <div class="nav-item" 
+                    @click="currentSection = medium; 
+                           document.body.dispatchEvent(new CustomEvent('currentSectionChanged'))" 
+                    :class="{ 'active': currentSection === medium }">
+
+                    <h1 x-text="medium"></h1>
+                    
+                </div>
+            </template>
+
+        </nav>
+    </header>
+
+    <main x-show="clickedStart">
+
+        <template class="project-section" x-for="medium in media">
+            <section x-show="currentSection === medium"> 
+                <h1 x-text="medium"></h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat repudiandae optio tempora. Nemo, fugiat ad. Ipsum eos quaerat alias sed expedita eum illo magnam, consequatur, numquam consectetur nulla quibusdam facere.
+                </p>
+                <button 
+                x-text="'Previous ' + medium"
+                x-bind:hx-get="'/api/' + medium + '/previous'"
+                
+                hx-trigger="click"
+                hx-swap="outerHTML"
+                hx-target="#previous-content"
+                >
+                </button>
+
+                <div id="previous-content">
+
+                </div>
+            </section>"{contact-open: false}">
+        </template>
+    
+    </main>
+
+    <footer x-data="{contact-open: false}" x-show="clickedStart">
+        <button @click="contact-open = !contact-open">
+            Contact
+        </button>
+
+        <section x-show="contact-open">
+
+            <p>
+                poqw
+            </p>
+
+        </section>
+
+    </footer>
+
+    </body>
+
+</html>

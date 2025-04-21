@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="/alpinejs/cdn.min.js" defer></script>
+    <script src="/htmx/dist/htmx.min.js" defer></script>
+    
+    <link rel="stylesheet" href="input.css" type="text/css">
+
+</head>
+    <body x-data="{state: null, mode: 'edit', selectedMedia: null, media: ['games', 'music', 'art', 'writing']}">
+
+        <h1>Admin Dashboard</h1>
+
+        <template x-for="medium in media">
+            <button x-text="medium" @click="selectedMedia = medium"></button>
+        </template>
+
+        <main>
+
+            <script>
+
+                const growers = document.querySelectorAll(".grow-wrap");
+
+                growers.forEach((grower) => {
+                const textarea = grower.querySelector("textarea");
+                textarea.addEventListener("input", () => {
+                    grower.dataset.replicatedValue = textarea.value;
+                    });
+                });
+
+            </script>
+
+            <h2 x-text="selectedMedia"></h2>
+            
+            <div class="grow-wrap">
+                <textarea oninput="this.parentNode.dataset.replicatedValue = this.value">
+
+                </textarea>
+            </div>
+
+        </main>
+
+    </body>
+
+</html>
